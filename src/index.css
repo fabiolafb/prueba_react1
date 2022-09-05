@@ -5,9 +5,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: rgb(251, 244, 236);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Header */
+header {
+  background-color: rgb(189, 106, 113);
+  height: 4rem;
+  border-radius: 5px;
+  margin: 0.8rem 5rem 0.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+img {
+  width: 5rem;
+  height: 4rem;
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 3.5rem;
+}
+
+/* Buscador */
+.buscador_div {
+  margin: 1.5rem 0rem 0.5rem 8.5rem;
+}
+.buscador_input {
+  height: 2.2rem;
+  width: 20rem;
+  margin-top: 0.3rem;
+}
+
+/* Sección cards */
+section {
+  margin: 2.5rem 5rem 3rem 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 40%;
+  border-radius: 10px;
+  border: 2px solid red;
+  padding: 0.5rem;
+  box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.2);
+}
+.card-text {
+  font-size: 1.2rem;
+  
 }
