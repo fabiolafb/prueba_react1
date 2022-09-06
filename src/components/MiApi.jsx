@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import bandera from '../src/assets/img/bandera_3v.jpg';
-import moment from "moment";
+//import moment from "moment";
  
 const MiApi = () => {
     const [listaFeriados, setListaFeriados] = useState([])
@@ -30,7 +30,7 @@ const MiApi = () => {
         </header>
         <main>
           <div className="buscador_div">  
-            <h4 className="titulo">Buscador de feriado</h4>
+            <h3 className="titulo">Buscador de feriado</h3>
             <input      
               type="text"
               className="buscador_input"
@@ -41,15 +41,40 @@ const MiApi = () => {
               }
             />
           </div>
+          <div className="buscador_div">  
+            <h3 className="titulo">Filtrar feriado</h3>
+            <select className="buscador_input" id="date" >
+                    <option value=""> <i>Mes del año</i> </option>
+                    <option value="">Enero</option>
+                    <option value="">Febrero</option>
+                    <option value="">Marzo</option>
+                    <option value="">Abril</option>
+                    <option value="">Mayo</option>
+                    <option value="">Junio</option>
+                    <option value="">Julio</option>
+                    <option value="">Agosto</option>
+                    <option value="">Septiembre</option>
+                    <option value="">Octubre</option>
+                    <option value="">Noviembre</option>
+                    <option value="">Diciembre</option>
+            </select>
+            <select className="buscador_input" id="extra" >
+                    <option value=""><i>Tipo de feriado</i> </option>
+                    <option value="">Civil</option>
+                    <option value="">Religioso</option>
+                    <option value="">Irrenunciable</option>
+             </select>
+          </div>
+        </main>
 
-          {/* Seccion cards */}
-          <section>
+        {/* Seccion cards */}
+        <section>
             {listaFeriados.filter((lista) => {
           if (buscando === "") {
             return lista;
           } else if (lista.title.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ||
             lista.date.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ||
-            lista.type.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ) {
+            lista.extra.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ) {
             return lista;
           }
           }).map(f => 
@@ -57,13 +82,13 @@ const MiApi = () => {
             <div className="col p-1"  >
               <h5 className="card-title"><b>{f.title}</b> </h5>
               <h5 className="card-subtitle mb-1 "> Fecha: {f.date} </h5>
-              <p className="card-text">Tipo de feriado: <b>{f.type}</b> </p>
+              <p className="card-text">Tipo de feriado: <b>{f.extra}</b> </p>
             </div>
           </div>
           )}
-          </section>
+        </section>
 
-        </main>
+        
     </>
      )
  

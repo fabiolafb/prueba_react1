@@ -35,7 +35,10 @@ h1 {
   line-height: 3.5rem;
 }
 
-/* Buscador */
+/* Buscador y filtrador*/
+main {
+  display: flex;
+}
 .buscador_div {
   margin: 1.5rem 0rem 0.5rem 8.5rem;
 }
@@ -43,6 +46,9 @@ h1 {
   height: 2.2rem;
   width: 20rem;
   margin-top: 0.3rem;
+}
+select {
+  margin-right: 1rem;
 }
 
 /* Sección cards */
