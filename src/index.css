@@ -21,18 +21,20 @@ header {
   border-radius: 5px;
   margin: 0.8rem 5rem 0.5rem 5rem;
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: space-between;
+  
 }
 img {
   width: 5rem;
   height: 4rem;
+  margin-top: 0;
 }
 
 h1 {
   color: rgb(255, 255, 255);
   text-align: center;
   line-height: 3.5rem;
+  
 }
 
 /* Buscador y filtrador*/
