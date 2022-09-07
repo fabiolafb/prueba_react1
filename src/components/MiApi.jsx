@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import bandera from '../src/assets/img/bandera_3v.jpg';
+//import bandera from '../assets/img/bandera_3v.jpg';
 //import moment from "moment";
  
 const MiApi = () => {
     const [listaFeriados, setListaFeriados] = useState([])
     // Asignar estado búsqueda
     const [buscando, setBuscando] = useState("")
+    // Asignar estado filtro
+    const [filtradoFeriados, setFiltradoFeriados] = useState();
 
     //Usar hook useEffect
     useEffect(() => {
@@ -17,15 +19,21 @@ const MiApi = () => {
        const url = 'https://api.victorsanmartin.com/feriados/en.json';
        const response = await fetch(url)
        const {data} = await response.json()
-       console.log(data)
+       //console.log(data)
        setListaFeriados(data).reverse();
     }
    
+    const capturaExtraFeriados = function(e) {
+      const opcion = e.target.value;
+      setFiltradoFeriados(opcion);
+   }
+
+    
      return (
       <>
         <header>
            <h1> Feriados de Chile Año 2022</h1>
-           {/* <img src={ bandera } alt="" />  */}
+           {/* <img src={ bandera } alt="" className="bandera"/>  */}
            {/* <img className="bandera" src={"public/bandera.png"} /> */}
         </header>
         <main>
@@ -44,25 +52,26 @@ const MiApi = () => {
           <div className="buscador_div">  
             <h3 className="titulo">Filtrar feriado</h3>
             <select className="buscador_input" id="date" >
-                    <option value=""> <i>Mes del año</i> </option>
-                    <option value="">Enero</option>
-                    <option value="">Febrero</option>
-                    <option value="">Marzo</option>
-                    <option value="">Abril</option>
-                    <option value="">Mayo</option>
-                    <option value="">Junio</option>
-                    <option value="">Julio</option>
-                    <option value="">Agosto</option>
-                    <option value="">Septiembre</option>
-                    <option value="">Octubre</option>
-                    <option value="">Noviembre</option>
-                    <option value="">Diciembre</option>
+              <option value={-1}> <i>Mes del año</i> </option>
+              <option value="Enero">Enero</option>
+              <option value="Febrero">Febrero</option>
+              <option value="Marzo">Marzo</option>
+              <option value="Abril">Abril</option>
+              <option value="Mayo">Mayo</option>
+              <option value="Junio">Junio</option>
+              <option value="Julio">Julio</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Septiembre">Septiembre</option>
+              <option value="Octubre">Octubre</option>
+              <option value="Noviembre">Noviembre</option>
+              <option value="Diciembre">Diciembre</option>
             </select>
-            <select className="buscador_input" id="extra" >
-                    <option value=""><i>Tipo de feriado</i> </option>
-                    <option value="">Civil</option>
-                    <option value="">Religioso</option>
-                    <option value="">Irrenunciable</option>
+
+            <select className="buscador_input" id="extra" onClick={capturaExtraFeriados}>
+              <option value={-1}>Tipo de feriado</option>
+              <option value="Civil">Civil</option>
+              <option value="Religioso">Religioso</option>
+              <option value="Irrenunciable">Irrenunciable</option>
              </select>
           </div>
         </main>
@@ -76,8 +85,10 @@ const MiApi = () => {
             lista.date.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ||
             lista.extra.toLocaleLowerCase().includes(buscando.toLocaleLowerCase()) ) {
             return lista;
+          };
+          
           }
-          }).map(f => 
+          ).map(f => 
           <div className="card" key={f} >
             <div className="col p-1"  >
               <h5 className="card-title"><b>{f.title}</b> </h5>
@@ -86,6 +97,8 @@ const MiApi = () => {
             </div>
           </div>
           )}
+
+          {}
         </section>
 
         
