@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-//import bandera from '../assets/img/bandera_3v.jpg';
-//import moment from "moment";
+import moment from "moment";
+moment.locale('es')
+
  
 const MiApi = () => {
     const [listaFeriados, setListaFeriados] = useState([])
@@ -25,19 +26,14 @@ const MiApi = () => {
    
     const capturaExtraFeriados = function(e) {
       const opcion = e.target.value;
-      setFiltradoFeriados(opcion);
+      setFiltradoFeriados(opcion).reverse();
    }
 
     
      return (
       <>
-        <header>
-          <img src="https://assets.stickpng.com/images/580b585b2edbce24c47b27f2.png" alt="" className="bandera"/> 
-          <h1> Feriados de Chile Año 2022</h1>
-          <img src="https://assets.stickpng.com/images/580b585b2edbce24c47b27f2.png" alt="" className="bandera"/>
-           {/* <img className="bandera" src={"public/bandera.png"} /> */}
-        </header>
         <main>
+          {/* Seccion filtrado */}
           <div className="buscador_div">  
             <h3 className="titulo">Buscador de feriado</h3>
             <input      
@@ -88,21 +84,18 @@ const MiApi = () => {
             return lista;
           };
           
-          }
-          ).map(f => 
+          }).map(f => 
           <div className="card" key={f} >
             <div className="col p-1"  >
               <h5 className="card-title"><b>{f.title}</b> </h5>
-              <h5 className="card-subtitle mb-1 "> Fecha: {f.date} </h5>
-              <p className="card-text">Tipo de feriado: <b>{f.extra}</b> </p>
+              <h5 className="card-subtitle mb-1" id="fecha"> Fecha: {f.date}</h5>
+              <p className="card-text" >Tipo de feriado: <b>{f.extra}</b> </p>
             </div>
           </div>
           )}
-
           {}
         </section>
-        
-    </>
+      </>
     )
  
 }
