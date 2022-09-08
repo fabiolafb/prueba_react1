@@ -40,14 +40,18 @@ h1 {
 /* Buscador y filtrador*/
 main {
   display: flex;
+  justify-content: space-evenly;
 }
 .buscador_div {
-  margin: 1.5rem 0rem 0.5rem 8.5rem;
+  margin: 1.5rem 0rem 0.5rem 0rem;
 }
 .buscador_input {
   height: 2.2rem;
   width: 20rem;
   margin-top: 0.3rem;
+}
+.titulo {
+  color: rgb(71, 69, 69);
 }
 select {
   margin-right: 1rem;
