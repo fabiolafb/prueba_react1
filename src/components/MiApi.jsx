@@ -7,9 +7,9 @@ const MiApi = () => {
   const [listaFeriados, setListaFeriados] = useState([]);
   // Asignar estado para la búsqueda
   const [buscando, setBuscando] = useState("");
-  // Asignar estado filtro
+  // Asignar estado para filtro por criterio
   const [filtradoFeriados, setFiltradoFeriados] = useState("");
-  // Asignar estado par
+  // Asignar estado para invertir el array
   const [invertirFeriados, setInvertirFeriados] = useState("");
 
   //Usar el hook useEffect para modificar
@@ -24,6 +24,19 @@ const MiApi = () => {
     const { data } = await response.json(); //respuesta formateada como json
     //console.log(data)
     setListaFeriados(data);
+  };
+
+  //Función que invierte orden de array según el elemento date(fecha)
+  const handlerInvertirFeriados = () => {
+    if (invertirFeriados === "") {
+      setInvertirFeriados(listaFeriados.reverse());
+      console.log(setInvertirFeriados)
+    } else if (invertirFeriados !== "") {
+      setInvertirFeriados("");
+      setListaFeriados(
+        listaFeriados.sort((a, b) => a.date.localeCompare(b.date))
+      );
+    }
   };
 
   return (
@@ -57,9 +70,9 @@ const MiApi = () => {
         <button
           type="button"
           value="invertirFeriados"
-          onClick={(i) => setInvertirFeriados(listaFeriados.reverse())}
+          onClick={handlerInvertirFeriados}
         >
-          Invertir orden
+          Ordenar cronológicamente
         </button>
       </main>
 
