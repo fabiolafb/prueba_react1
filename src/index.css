@@ -56,6 +56,15 @@ main {
 select {
   margin-right: 1rem;
 }
+button {
+  margin: 4rem 2rem 0 0;
+  background-color: rgba(189, 106, 113, 0.743);
+  color: rgb(255, 255, 255);
+  height: 2.2rem;
+  border: 2px solid gray;
+  border-radius: 3px;
+  width: 9rem;
+}
 
 /* Sección cards */
 section {
