@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
-moment.locale("es");
+
 
 const MiApi = () => {
   //Asigna estado para recibir datos del array
   const [listaFeriados, setListaFeriados] = useState([]);
   // Asignar estado para la búsqueda
   const [buscando, setBuscando] = useState("");
-  // Asignar estado para filtro por criterio
+  // Asignar estado para filtro por criterio de fecha
   const [filtradoFeriados, setFiltradoFeriados] = useState("");
   // Asignar estado para invertir el array
   const [invertirFeriados, setInvertirFeriados] = useState("");
 
-  //Usar el hook useEffect para modificar
+  //Usar el hook useEffect para ejecutar los cambios al array
   useEffect(() => {
-    obtenerFeriados();
-  }, []);
+    obtenerFeriados(); 
+  }, []); //crear dependecia con un array vacio
 
   //Función que llama a la API
   const obtenerFeriados = async () => {
@@ -30,11 +29,9 @@ const MiApi = () => {
   const handlerInvertirFeriados = () => {
     if (invertirFeriados === "") {
       setInvertirFeriados(listaFeriados.reverse());
-      console.log(setInvertirFeriados)
     } else if (invertirFeriados !== "") {
       setInvertirFeriados("");
-      setListaFeriados(
-        listaFeriados.sort((a, b) => a.date.localeCompare(b.date))
+      setListaFeriados(listaFeriados.sort((a, b) => a.date.localeCompare(b.date))
       );
     }
   };
@@ -42,6 +39,7 @@ const MiApi = () => {
   return (
     <>
       <main>
+        
         {/* Seccion filtrado */}
         <div className="buscador_div">
           <h4 className="titulo">Buscador de feriado</h4>
@@ -55,6 +53,7 @@ const MiApi = () => {
             }}
           />
         </div>
+
         <div className="buscador_div">
           <h4 className="titulo">Filtrar por tipo feriado</h4>
           <select
@@ -63,17 +62,20 @@ const MiApi = () => {
             onChange={(e) => setFiltradoFeriados(e.target.value)}
             value={filtradoFeriados}
           >
+            <option value=""></option>
             <option value="Civil">Civil</option>
             <option value="Religioso">Religioso</option>
           </select>
         </div>
+
         <button
           type="button"
           value="invertirFeriados"
           onClick={handlerInvertirFeriados}
         >
-          Ordenar cronológicamente
+          Ordenar inversamente
         </button>
+
       </main>
 
       {/* Seccion cards */}
@@ -81,11 +83,6 @@ const MiApi = () => {
         {listaFeriados
           .filter((lista) => {
             if (buscando === "" && filtradoFeriados === "") {
-              return lista;
-            } else if (
-              buscando === "" &&
-              lista.type.includes(filtradoFeriados)
-            ) {
               return lista;
             } else if (
               filtradoFeriados === "" &&
@@ -100,17 +97,22 @@ const MiApi = () => {
                   .includes(buscando.toLocaleLowerCase()))
             ) {
               return lista;
+            } else if (
+              buscando === "" &&
+              lista.type.includes(filtradoFeriados)
+            ) {
+              return lista;
             }
           })
           .map((f, i) => (
             <div className="card" key={i}>
               <div className="col p-1">
                 <h5 className="card-title">
-                  <b>{f.title}</b>{""}{""}
+                  <b>{f.title}</b>
                 </h5>
                 <h5 className="card-subtitle mb-1"> Fecha: {f.date} </h5>
                 <p className="card-text">
-                  Tipo de feriado: <b>{f.type}</b>{" "}
+                  Tipo de feriado: <b>{f.type}</b>
                 </p>
               </div>
             </div>
